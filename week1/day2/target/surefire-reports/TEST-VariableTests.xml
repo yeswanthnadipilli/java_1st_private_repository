@@ -17,7 +17,7 @@
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
     <property name="user.country" value="IN"/>
     <property name="sun.boot.library.path" value="C:\Program Files\Eclipse Adoptium\jdk-11.0.13.8-hotspot\bin"/>
-    <property name="sun.java.command" value="C:\Users\yeswanth.naidu\AppData\Local\Temp\surefire6791889300648603826\surefirebooter9902297194156655521.jar C:\Users\yeswanth.naidu\AppData\Local\Temp\surefire6791889300648603826 2022-01-07T01-05-26_098-jvmRun1 surefire5493589590536575470tmp surefire_02161354677959637557tmp"/>
+    <property name="sun.java.command" value="C:\Users\yeswanth.naidu\AppData\Local\Temp\surefire11711347307742054808\surefirebooter2129196293606010463.jar C:\Users\yeswanth.naidu\AppData\Local\Temp\surefire11711347307742054808 2022-01-07T01-47-24_483-jvmRun1 surefire9756344374565206671tmp surefire_010660113662954718478tmp"/>
     <property name="jdk.debug" value="release"/>
     <property name="surefire.test.class.path" value="D:\java_backend_training\java_1st_private_repository\week1\day2\target\test-classes;D:\java_backend_training\java_1st_private_repository\week1\day2\target\classes;C:\Users\yeswanth.naidu\.m2\repository\org\junit\jupiter\junit-jupiter-engine\5.8.2\junit-jupiter-engine-5.8.2.jar;C:\Users\yeswanth.naidu\.m2\repository\org\junit\platform\junit-platform-engine\1.8.2\junit-platform-engine-1.8.2.jar;C:\Users\yeswanth.naidu\.m2\repository\org\opentest4j\opentest4j\1.2.0\opentest4j-1.2.0.jar;C:\Users\yeswanth.naidu\.m2\repository\org\junit\platform\junit-platform-commons\1.8.2\junit-platform-commons-1.8.2.jar;C:\Users\yeswanth.naidu\.m2\repository\org\junit\jupiter\junit-jupiter-api\5.8.2\junit-jupiter-api-5.8.2.jar;C:\Users\yeswanth.naidu\.m2\repository\org\apiguardian\apiguardian-api\1.1.2\apiguardian-api-1.1.2.jar;"/>
     <property name="sun.cpu.endian" value="little"/>
@@ -33,7 +33,7 @@
     <property name="java.specification.name" value="Java Platform API Specification"/>
     <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
     <property name="java.awt.graphicsenv" value="sun.awt.Win32GraphicsEnvironment"/>
-    <property name="surefire.real.class.path" value="C:\Users\yeswanth.naidu\AppData\Local\Temp\surefire6791889300648603826\surefirebooter9902297194156655521.jar"/>
+    <property name="surefire.real.class.path" value="C:\Users\yeswanth.naidu\AppData\Local\Temp\surefire11711347307742054808\surefirebooter2129196293606010463.jar"/>
     <property name="user.script" value=""/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
     <property name="java.runtime.version" value="11.0.13+8"/>
@@ -62,5 +62,5 @@
     <property name="java.class.version" value="55.0"/>
   </properties>
   <testcase name="learnVariableInvalid" classname="VariableTests" time="0.002"/>
-  <testcase name="learnVariable" classname="VariableTests" time="0.001"/>
+  <testcase name="learnVariable" classname="VariableTests" time="0.002"/>
 </testsuite>
