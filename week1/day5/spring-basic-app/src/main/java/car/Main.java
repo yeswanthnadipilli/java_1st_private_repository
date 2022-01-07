@@ -8,7 +8,7 @@ public class Main {
 
         ApplicationContext context = new ClassPathXmlApplicationContext("beans.xml");
 
-        Car car1 = (Car) context.getBean("carak");
+        Car car1 = (Car) context.getBean("car");
         car1.setSpeed(100);
 
         Class<Car> cls = Car.class; // this is not the bytecode class file
