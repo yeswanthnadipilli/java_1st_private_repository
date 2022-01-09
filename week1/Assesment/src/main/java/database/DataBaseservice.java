@@ -67,11 +67,16 @@ public class DataBaseservice {
 
     }
 
-//        public int update() throws SQLException {
-//         String sql = "update bank_account set amount_number= ? where ac_num = ?";
-//         PreparedStatement ps = connection.prepareStatement(sql);
-//         ps.setInt(1,9000);
-//         ps.setInt(2,105);
+        public int update() throws SQLException {
+            String sql = "update bank_account set amount_number= ? where ac_num = ?";
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setInt(1, 9000);
+            ps.setInt(2, 105);
+            int expected = ps.executeUpdate();
+            return expected;
+        }
+
+
 
 
 }

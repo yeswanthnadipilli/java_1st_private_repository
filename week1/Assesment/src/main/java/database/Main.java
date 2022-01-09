@@ -20,7 +20,8 @@ public class Main {
         //      );
 
            // db.search();
-        db.selectWhere(103);
+       // db.selectWhere(103);
+        db.update();
 
     }
 }
