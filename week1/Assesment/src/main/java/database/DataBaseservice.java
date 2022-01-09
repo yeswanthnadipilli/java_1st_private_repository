@@ -67,19 +67,62 @@ public class DataBaseservice {
 
     }
 
-        public int update() throws SQLException {
-            String sql = "update bank_account set amount_number= ? where ac_num = ?";
-            PreparedStatement ps = connection.prepareStatement(sql);
-            ps.setInt(1, 9000);
-            ps.setInt(2, 105);
-            int expected = ps.executeUpdate();
-            return expected;
-        }
+    public int update() throws SQLException {
+        String sql = "update bank_account set amount_number= ? where ac_num = ?";
+        PreparedStatement ps = connection.prepareStatement(sql);
+        ps.setInt(1, 9000);
+        ps.setInt(2, 105);
+        int expected = ps.executeUpdate();
+        return expected;
+    }
 
 
+    public int deposite() throws SQLException {
+        String sql = " update bank_account set amount_number=amount_number+? where amount_number=?";
+        PreparedStatement ps = connection.prepareStatement(sql);
+        ps.setInt(1,3456);
+        ps.setInt(2,3000);
+        int expected = ps.executeUpdate();
+        return expected;
+    }
+
+    public int withDraw() throws SQLException {
+        String sql = " update bank_account set amount_number=amount_number-? where amount_number=?";
+        PreparedStatement ps = connection.prepareStatement(sql);
+        ps.setInt(1,456);
+        ps.setInt(2,4000);
+        int expected = ps.executeUpdate();
+        return expected;
+
+    }
 
 
+    public int  transferMoney() throws SQLException {
+        String str1 = "update bank_account set amount_number = amount_number-? where amount_number=?";
+        PreparedStatement ps1 = connection.prepareStatement(str1);
+        ps1.setInt(1, 500);
+        ps1.setInt(2, 35000);
+        int result1 = ps1.executeUpdate();
+        String str2 = "update bank_account set amount_number= amount_number+? where amount_number = ?";
+        PreparedStatement ps2 = connection.prepareStatement(str2);
+        ps2.setInt(1, 500);
+        ps2.setInt(2, 9000);
+        int result2 = ps2.executeUpdate();
+        return result2;
+
+    }
 }
+
+
+
+
+
+
+
+
+
+
+
 
 
 

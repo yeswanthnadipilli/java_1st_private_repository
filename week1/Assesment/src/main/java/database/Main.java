@@ -21,7 +21,10 @@ public class Main {
 
            // db.search();
        // db.selectWhere(103);
-        db.update();
-
+       // db.update();
+       // db.transferMoney();
+       // db.deposite();
+      //  db.withDraw();
+            db.transferMoney();
     }
 }
