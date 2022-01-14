@@ -10,7 +10,7 @@ import java.sql.Date;
 import java.time.LocalDate;
 
 
-@RequestMapping("/cra")
+@RequestMapping("/car")
 @RestController
 public class CarController {
 

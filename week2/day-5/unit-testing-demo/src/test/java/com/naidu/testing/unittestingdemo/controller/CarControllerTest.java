@@ -11,12 +11,10 @@ import org.springframework.boot.web.server.LocalServerPort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
-import java.sql.Date;
-import java.time.LocalDate;
-
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 public class CarControllerTest {
+
 
     @Autowired
     private TestRestTemplate template; // it is wrapper over http client
@@ -48,24 +46,6 @@ public class CarControllerTest {
                 entity.getStatusCode()
         );
     }
-
-    @DisplayName("POST - Car - Saving Car Object")
-    @Test
-    public void testPostMethod() {
-        String url = "http://" + "localhost" +":" + port +"/car";
-        var car = new Car();
-        car.setCost(56.23);
-        car.setId(10L);
-        car.setModel("abc");
-        car.setMfg(Date.valueOf(LocalDate.now()));
-        var re = template.postForEntity(
-                url,
-                car,
-                Car.class // type information of Car -> this is skeleton of the car
-        );
-        Assertions.assertEquals(HttpStatus.CREATED, re.getStatusCode());
-    }
-
 
 
 }
