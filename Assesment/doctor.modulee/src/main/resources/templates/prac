@@ -1,0 +1,27 @@
+ @PutMapping("/update")
+ public ResponseEntity<AppResponse<DoctorDto>> updateDocInfo(@RequestBody DoctorDto dto) {
+
+     var svObj = service.updateDoctor(dto);
+     var response = new AppResponse<DoctorDto>();
+     response.setStatus("success");
+     response.setMessage("Doctor updated successfully");
+     response.setBody(svObj);
+     return new ResponseEntity<>(response, HttpStatus.ACCEPTED);
+ }
+
+
+
+ @Override
+ public DoctorDto updateDoctorInfo(DoctorDto dto) {
+     DoctorInfo doc = repository.findById(dto.getId()).orElse(null);
+     var doctor = new DoctorInfo();
+     doctor.setId(dto.getId());
+     doctor.setName(dto.getName());
+     doctor.setSpecialization(dto.getSpecialization());
+     doctor.setHospitalNm(dto.getHospitalNm());
+     doctor.setLocality(dto.getLocality());
+     doctor.setVisiting(dto.getVisiting());
+     repository.save(doctor);
+     return dto;
+
+ }
