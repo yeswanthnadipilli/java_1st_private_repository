@@ -11,15 +11,14 @@ import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.boot.web.server.LocalServerPort;
 import org.springframework.http.HttpStatus;
 
-
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-public class DoctorControllerTests {
+public class ControllerTests {
 
-    @LocalServerPort
-    private int port;
 
     @Autowired
     private TestRestTemplate template;
+    @LocalServerPort
+    private int port;
 
     @Test
     public void testGetMethod() {
@@ -30,8 +29,19 @@ public class DoctorControllerTests {
     }
 
 
+        @DisplayName("Testing Post method for saving")
+        @Test
+        public void testPostMethod(){
+            String url = "http://"+"localhost"+":"+port+"/doctor";
+            var doctor = new Doctor();
+            doctor.setId(17L);
+            doctor.setName("kranthi");
+            doctor.setSpecialization("opera");
+            doctor.setHospitalName("hosp");
+            doctor.setHospitalLocality("us");
+            doctor.setVisiting(true);
+            var re =template.postForEntity(url,doctor,Doctor.class);
+            Assertions.assertEquals(HttpStatus.OK , re.getStatusCode());
+        }
 
-}
-
-
-
+    }

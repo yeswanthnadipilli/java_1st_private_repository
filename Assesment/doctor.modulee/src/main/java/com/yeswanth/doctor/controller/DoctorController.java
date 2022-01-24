@@ -59,7 +59,7 @@ public class DoctorController {
 
         List<Doctor> obj1 = service.deleteDoctor(dto.getHospitalName());
         var response = new AppResponse<List<Doctor>>();
-        response.setMessage("account list");
+        response.setMessage("doctor deleted successfully");
         response.setStatus("success");
         response.setBody(obj1);
         return ResponseEntity.ok(response);
@@ -70,7 +70,7 @@ public class DoctorController {
 
 
     @GetMapping("/{Specialization}")
-    public ResponseEntity<AppResponse<List<DoctorDto>>> findVisitingDoctorBySpec(@PathVariable String Specialization){
+    public ResponseEntity<AppResponse<List<DoctorDto>>> findVisitingDoctorBySpecialization(@PathVariable String Specialization){
 
         var svObj = service.findVisitingDoctorBySpecialization(Specialization);
         var response = new AppResponse<List<DoctorDto>>();

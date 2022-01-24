@@ -36,7 +36,7 @@ public class DoctorImplService implements DoctorService {
 
     public DoctorDto updateDoctorById(DoctorDto dto) throws InvalidIdException {
 
-        Doctor doctor = repository.findById(dto.getId()).orElseThrow(() -> new InvalidIdException("Enter valid Id"));
+        Doctor doctor = repository.findById(dto.getId()).orElseThrow(() -> new InvalidIdException("Enter correct Id"));
         var doc = new Doctor();
         doc.setId(dto.getId());
         doc.setName(dto.getName());
@@ -69,11 +69,11 @@ public class DoctorImplService implements DoctorService {
 
 
     @Override
-    public List<DoctorDto> findVisitingDoctorBySpecialization(String spec) {
+    public List<DoctorDto> findVisitingDoctorBySpecialization(String specialization) {
 
         List<Doctor> dto = repository.findAll();
         List<DoctorDto> dto1 = dto.stream()
-                .filter(n-> n.isVisiting()== true  && n.getSpecialization().equals(spec))
+                .filter(n-> n.isVisiting()== true  && n.getSpecialization().equals(specialization))
                 .map (doc -> new DoctorDto(
                         doc.getId(),
                         doc.getName(),

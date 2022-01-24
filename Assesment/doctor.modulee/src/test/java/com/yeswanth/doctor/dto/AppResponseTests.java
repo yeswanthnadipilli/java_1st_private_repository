@@ -16,16 +16,5 @@ public class AppResponseTests {
     }
 
 
-    void testObjectGetters() {
-
-        AppResponse app = new AppResponse();
-        app.setStatus("Account List");
-        app.setMessage("Success");
-
-        app.setBody(" ");
-
-
-    }
-
 
 }
