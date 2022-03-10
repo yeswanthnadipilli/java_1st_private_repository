@@ -2,6 +2,7 @@ package com.simplejdbcapp.restapitest;
 
 
 import com.simplejdbcapp.domain.User;
+import com.simplejdbcapp.dto.ResponseApi;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -10,6 +11,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.boot.web.server.LocalServerPort;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,28 +27,38 @@ public class RestUserControllerTesting {
     @LocalServerPort
     int port;
 
-//    @DisplayName("Post - User - Saving User Object")
-//    @Test
-//    public void testPostMethod() {
-//        String url = "http://" + "localhost" + ":" + port + "/api/user";
-//        var user = new User();
-//        user.setId(2);
-//        user.setName("jack");
-//        user.setEmail("jack@gmail.com");
-//        user.setCity("kurnool");
-//
-//        var re = template.postForEntity(url, user, User.class);
-//        Assertions.assertEquals(HttpStatus.OK, re.getStatusCode());
-//    }
+
+    @DisplayName("POST - User - Saving User Object")
+    @Test
+    public void testPostMethod() {
+        String url = "http://" + "localhost" + ":" + port + "/user";
+        var us = new User();
+        us.setId(7);
+        us.setName("reddy77");
+        us.setEmail("reddy77@gmail.com");
+        us.setCity("mumbai77");
+
+        var re = template.postForEntity(url, us, ResponseApi.class);
+        Assertions.assertEquals(HttpStatus.OK, re.getStatusCode());
+    }
+
+        @DisplayName("GET - all - Checking Status code")
+    @Test
+    public void testGetStatusCode() {
+        String url = "http://" + "localhost" + ":" + port + "/users";
+        ResponseEntity<User> entity = template.getForEntity(url, User.class);
+        Assertions.assertEquals(HttpStatus.OK, entity.getStatusCode());
+    }
+
 
     @DisplayName("Testing PUT Method")
     @Test
     public void testPutMethod() {
         var obj = new User();
-        obj.setId(121);
+        obj.setId(4);
         String url = "http://" + "localhost" + ":" + port + "/api/update-users";
         var us = new User();
-        us.setId(121);
+        us.setId(4);
         us.setName("Rohit");
         us.setEmail("rohit@gmail.com");
         template.put(url, us);
@@ -60,7 +72,7 @@ public class RestUserControllerTesting {
         obj.setId(121);
         obj.setName("Rohit");
         obj.setEmail("rohit@gmail.com");
-        obj.setCity("1234");
+        obj.setCity("delhi");
         List<User> list = new ArrayList<>();
         list.add(obj);
         Assertions.assertEquals(1, list.size());
@@ -76,7 +88,7 @@ public class RestUserControllerTesting {
         int id = 3;
         String url = "http://" + "localhost" + ":" + port + "/api/delete-user/" + id;
         var obj = new User();
-        obj.setId(121);
+        obj.setId(3);
         obj.setName("Rohit");
         obj.setEmail("rohit@gmail.com");
         obj.setCity("mumbia");

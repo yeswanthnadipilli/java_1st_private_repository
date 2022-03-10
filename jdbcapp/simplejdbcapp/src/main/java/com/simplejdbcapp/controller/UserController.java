@@ -26,7 +26,7 @@ public class UserController {
     private static final String FAILED = "PROCESSED FAILED";
 
 
-    @PostMapping("/user")
+    @PostMapping("user")
     @ApiOperation("To add the User info")
     @ApiResponses({@ApiResponse( code = 200 , message = "User Saved"),
             @ApiResponse(code = 404, message = "Class not found"),
@@ -104,7 +104,7 @@ public class UserController {
         }
     }
 
-    @GetMapping("/get-users")
+    @GetMapping("/users")
     @ApiOperation("To get the User info")
     @ApiResponses({@ApiResponse( code = 200 , message = "User info"),
             @ApiResponse(code = 404, message = "Class not found"),
