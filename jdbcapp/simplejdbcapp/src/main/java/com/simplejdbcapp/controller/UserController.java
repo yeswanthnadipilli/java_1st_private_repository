@@ -1,6 +1,7 @@
 package com.simplejdbcapp.controller;
 
 import com.simplejdbcapp.domain.User;
+import com.simplejdbcapp.dto.QueryResponse;
 import com.simplejdbcapp.dto.ResponseApi;
 import com.simplejdbcapp.exception.*;
 import com.simplejdbcapp.service.UserService;
@@ -26,34 +27,32 @@ public class UserController {
     private static final String FAILED = "PROCESSED FAILED";
 
 
-    @PostMapping("user")
+    @PostMapping(value = "/create-users")
     @ApiOperation("To add the User info")
     @ApiResponses({@ApiResponse( code = 200 , message = "User Saved"),
             @ApiResponse(code = 404, message = "Class not found"),
             @ApiResponse(code = 500, message = "Internal Server error")})
-    public ResponseEntity<ResponseApi<User>> saveUser(@RequestBody User user) {
+    public ResponseEntity<ResponseApi<User>> addUser(@RequestBody User user,@RequestBody QueryResponse res) {
         try {
             var response = new ResponseApi<User>();
             response.setStatus(SUCCESS);
-            response.setBody(service.createUser(user));
-            response.setMessage("data has created");
+            response.setBody(service.createUsers(user,res));
+            response.setMessage("Data Has Been Created  ");
             HttpStatus code = ResponseEntity.ok(response).getStatusCode();
             response.setHttpStatusCode(String.valueOf(code));
             return ResponseEntity.ok(response);
-        } catch(FieldCannotEmptyException | InvalidIdInputException | UserIdAlreadyTakenException e) {
+        } catch (FieldCannotEmptyException |InvalidIdInputException | UserIdAlreadyTakenException e) {
             var response = new ResponseApi<User>();
             response.setStatus(FAILED);
             response.setBody(user);
             response.setMessage(e.getMessage());
             HttpStatus code = ResponseEntity.badRequest().build().getStatusCode();
             response.setHttpStatusCode(String.valueOf(code));
-           return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
+            return new ResponseEntity(response, HttpStatus.BAD_REQUEST);
         }
     }
 
-
-
-    @PutMapping("/update-user")
+    @PutMapping(value = "/update-users")
     @ApiOperation("To update the User info")
     @ApiResponses({@ApiResponse( code = 200 , message = "User updated"),
             @ApiResponse(code = 404, message = "Class not found"),
@@ -63,7 +62,7 @@ public class UserController {
             var response = new ResponseApi<User>();
             response.setStatus(SUCCESS);
             response.setBody(service.updateUser(user));
-            response.setMessage("Data Has Been Updated");
+            response.setMessage("Data Has Been Updated With Primary Key ID : "+user.getId());
             HttpStatus code = ResponseEntity.ok(response).getStatusCode();
             response.setHttpStatusCode(String.valueOf(code));
             return ResponseEntity.ok(response);
@@ -79,16 +78,16 @@ public class UserController {
     }
 
 
-    @DeleteMapping("/delete-user/{id}")
+    @PostMapping(value = "/delete-user")
     @ApiOperation("To delete the User")
     @ApiResponses({@ApiResponse( code = 200 , message = "User deleted"),
             @ApiResponse(code = 404, message = "Class not found"),
             @ApiResponse(code = 500, message = "Internal Server error")})
-    public ResponseEntity<ResponseApi<String>> deleteUser(@PathVariable int id) {
+    public ResponseEntity<ResponseApi<String>> deleteUser(@RequestParam Integer id,@RequestBody QueryResponse user) {
         try {
             var response = new ResponseApi<String>();
             response.setStatus(SUCCESS);
-            response.setBody(service.deleteUser(id));
+            response.setBody(service.deleteUser(id,user));
             response.setMessage("Data Has Been Deleted Using Primary Key : "+id);
             HttpStatus code = ResponseEntity.ok(response).getStatusCode();
             response.setHttpStatusCode(String.valueOf(code));
@@ -104,16 +103,18 @@ public class UserController {
         }
     }
 
-    @GetMapping("/users")
+
+    @PostMapping(value = "/get-users")
     @ApiOperation("To get the User info")
     @ApiResponses({@ApiResponse( code = 200 , message = "User info"),
             @ApiResponse(code = 404, message = "Class not found"),
             @ApiResponse(code = 500, message = "Internal Server error")})
-    public ResponseEntity<ResponseApi<List<User>>> searchUsers() {
+    public ResponseEntity<ResponseApi<List<User>>> searchUsers(@RequestBody QueryResponse user)
+    {
         try {
             var response = new ResponseApi<List<User>>();
             response.setStatus(SUCCESS);
-            response.setBody(service.allUsers());
+            response.setBody(service.allUsers(user));
             response.setMessage("Users Has Been Searched SuccessFully !");
             HttpStatus code = ResponseEntity.ok(response).getStatusCode();
             response.setHttpStatusCode(String.valueOf(code));
@@ -121,25 +122,24 @@ public class UserController {
         } catch (NoRecordsException e) {
             var response = new ResponseApi<>();
             response.setStatus(FAILED);
-            response.setBody("list empty-");
+            response.setBody("LIST EMPTY !");
             response.setMessage(e.getMessage());
             HttpStatus code = ResponseEntity.badRequest().build().getStatusCode();
             response.setHttpStatusCode(String.valueOf(code));
             return new ResponseEntity(response, HttpStatus.BAD_REQUEST);
         }
     }
-
-    @GetMapping("/search/{id}")
+    @PostMapping(value = "/get-particular-user")
     @ApiOperation("To get the Particular User info")
     @ApiResponses({@ApiResponse( code = 200 , message = "User info"),
             @ApiResponse(code = 404, message = "Class not found"),
             @ApiResponse(code = 500, message = "Internal Server error")})
-    public ResponseEntity<ResponseApi<User>> searchUsersById(@PathVariable int id) {
+    public ResponseEntity<ResponseApi> searchUsersById(@RequestParam Integer id,@RequestBody QueryResponse user) {
         try {
-            var response = new ResponseApi<User>();
+            var response = new ResponseApi<>();
             response.setStatus(SUCCESS);
-            response.setBody(service.searchParticularUser(id));
-            response.setMessage("Users Has Been Searched SuccessFully By Primary Key ID : "+id);
+            response.setBody(service.searchParticularUser(id,user));
+            response.setMessage("Users Has Been Searched SuccessFully");
             HttpStatus code = ResponseEntity.ok(response).getStatusCode();
             response.setHttpStatusCode(String.valueOf(code));
             return ResponseEntity.ok(response);

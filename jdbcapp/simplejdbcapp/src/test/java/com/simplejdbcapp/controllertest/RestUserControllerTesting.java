@@ -1,4 +1,4 @@
-package com.simplejdbcapp.restapitest;
+package com.simplejdbcapp.controllertest;
 
 
 import com.simplejdbcapp.domain.User;
