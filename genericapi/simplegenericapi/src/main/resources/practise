@@ -1,0 +1,8 @@
+CREATE TABLE User (
+    Id int,
+    Name varchar(255),
+    City varchar(255)
+);
+
+INSERT INTO User (Id, Name, City)
+VALUES (1,"chandu","bangalore");
